@@ -1,3 +1,5 @@
+@extends('layouts.app')
+@section('content')
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -28,18 +30,22 @@
                                 <span>Статус: </span><span class="text-success"><strong>Є на складі</strong></span>
                             </div>
                         </div></td>
-                    <form action=""></form>
-                    <td class="col-sm-1 col-md-1" style="text-align: center">
-                        
-                        <input type="email" class="form-control" id="exampleInputEmail1" value='{{$item->count}}'>
-                        
-                    </td>
+                    <form action="{{route('reloadCount')}}" method="POST">
+                        @csrf
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                            <input type="text" name = "id" value="{{$item->id}}" hidden>
+                            <input type="number" name="count" class="form-control"  value='{{$item->count}}'>
+                            <input type="submit" hidden>
+                        </td>
+                    </form>
                     <td class="col-sm-1 col-md-1 text-center"><strong>{{$item->gun->price}}$</strong></td>
-                    <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
+                    <td class="col-sm-1 col-md-1 text-center"><strong>{{$item->sum()}}$</strong></td>
 
                     <td class="col-sm-1 col-md-1">
-                        <form action="">
-                            <button type="button" class="btn btn-danger">
+                        <form action="{{route('basketItemRemove.destroy',$item->id)}}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-danger">
                                 <span class="glyphicon glyphicon-remove"></span> Видалити
                             </button>
                         </form>
@@ -54,7 +60,7 @@
                     <td>   </td>
                     <td>   </td>
                     <td><h3>Total</h3></td>
-                    <td class="text-right"><h3><strong>$31.53</strong></h3></td>
+                    <td class="text-right"><h3><strong>{{$item->total()}}$</strong></h3></td>
                 </tr>
                 <tr>
                     <td>   </td>
@@ -75,3 +81,4 @@
     </div>
 </div>
 
+@endsection

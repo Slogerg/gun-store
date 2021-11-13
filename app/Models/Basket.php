@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Basket extends Model
 {
@@ -25,10 +26,19 @@ class Basket extends Model
         return $this->belongsTo(User::class);
     }
 
-//    public function haveGun($gun_id,$user_id)
-//    {
-//        $gun = Basket::query()->where('user_id',$user_id)->where('gun_id',$gun_id)->first();
-//        dd($gun);
-//    }
+    public function sum()
+    {
+        return $this->count * $this->gun->price;
+    }
+
+    public function total()
+    {
+        $items = Basket::where('user_id',Auth::user()->id)->get();
+        $sum = 0;
+        foreach ($items as $item) {
+            $sum += $item->count * $item->gun->price;
+        }
+        return $sum;
+    }
 
 }
