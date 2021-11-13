@@ -29,7 +29,9 @@
                                 <p>Калібр: {{$item->caliber}}</p>
                                 <p>Кількість набоїв: {{$item->bullets}}</p>
 {{--                                //якщо BASKET user_id == user, gun_id == gun--}}
+                                @if($item->haveGun($item->id,Auth::user()->id))
                                 <button class="btn btn-secondary" disabled href="#">Додано</button>
+                                @else
                                 <form action="{{route('addInBasket')}}" method="POST">
                                     @csrf
                                     <input type="text"  name="user_id" hidden value="{{ Auth::user()->id }}">
@@ -38,6 +40,7 @@
                                     <input type="text" name="price" hidden value="{{$item->price}}">
                                     <button type="submit" class="btn btn-primary">Додати у кошик →</button>
                                 </form>
+                                @endif
                             </div>
                             <div class="card-footer text-muted">
                                 {{$item->created_at}}

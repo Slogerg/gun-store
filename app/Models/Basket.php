@@ -17,18 +17,18 @@ class Basket extends Model
 
     public function gun()
     {
-        $this->belongsTo(Gun::class);
+        return $this->belongsTo(Gun::class,'gun_id','id');
     }
 
     public function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function haveGun($gun_id,$user_id)
-    {
-        $gun = Basket::query()->where('user_id',$user_id)->where('gun_id',$gun_id)->first();
-        dd($gun);
-    }
+//    public function haveGun($gun_id,$user_id)
+//    {
+//        $gun = Basket::query()->where('user_id',$user_id)->where('gun_id',$gun_id)->first();
+//        dd($gun);
+//    }
 
 }

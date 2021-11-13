@@ -23,4 +23,11 @@ class Gun extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    public function haveGun($gun_id,$user_id)
+    {
+        $gun = Basket::query()->where('user_id',$user_id)->where('gun_id',$gun_id)->first();
+        if ($gun == null)
+            return false;
+        else return true;
+    }
 }
