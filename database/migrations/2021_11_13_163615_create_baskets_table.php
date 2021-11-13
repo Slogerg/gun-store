@@ -18,6 +18,7 @@ class CreateBasketsTable extends Migration
             $table->integer('gun_id')->unsigned();
             $table->integer('count');
             $table->integer('price');
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }
