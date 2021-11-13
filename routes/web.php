@@ -28,3 +28,5 @@ Route::post('/addInBasket',[\App\Http\Controllers\GunController::class,'addInBas
 Route::get('/basket',[\App\Http\Controllers\BasketController::class,'index'])->name('basket');
 Route::post('/reloadCount',[\App\Http\Controllers\BasketController::class,'reloadCount'])->name('reloadCount');
 Route::delete('/basketItemRemove/{basket}',[\App\Http\Controllers\BasketController::class,'destroy'])->name('basketItemRemove.destroy');
+
+Route::post('/order',[\App\Http\Controllers\OrderController::class,'store'])->name('order.store');

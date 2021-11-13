@@ -5,6 +5,7 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
+
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
@@ -53,28 +54,38 @@
 
                 </tr>
                 @endforeach
+                <form action="{{route('order.store')}}" method="POST">
+                    @method('POST')
+                    @csrf
+                    @if(isset($item))
+                    <input type="text" name="total_price" value="{{$item->total()}}" hidden>
+                    <input type="text" name="user_id" value="{{Auth::user()->id}}" hidden>
+
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>   </td>
+                            <td><h3>Total</h3></td>
+                            <td class="text-right"><h3><strong>{{$item->total()}}$</strong></h3></td>
+                        </tr>
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>
+                                <a href="{{route('guns')}}" type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span> Продовжити покупки
+                                </a></td>
+                            <td>
+                                <button type="submit" class="btn btn-success">
+                                    Замовити <span class="glyphicon glyphicon-play"></span>
+                                </button></td>
+                        </tr>
+                    @endif
+
+                </form>
 
 
-                <tr>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>   </td>
-                    <td><h3>Total</h3></td>
-                    <td class="text-right"><h3><strong>{{$item->total()}}$</strong></h3></td>
-                </tr>
-                <tr>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>
-                        <a href="{{route('guns')}}" type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> Продовжити покупки
-                        </a></td>
-                    <td>
-                        <button type="button" class="btn btn-success">
-                            Замовити <span class="glyphicon glyphicon-play"></span>
-                        </button></td>
-                </tr>
                 </tbody>
             </table>
         </div>
