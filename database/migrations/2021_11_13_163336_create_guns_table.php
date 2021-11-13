@@ -20,7 +20,7 @@ class CreateGunsTable extends Migration
             $table->string('bullets')->nullable();
             $table->string('description')->nullable();
             $table->integer('price');
-
+            $table->string('image')->nullable();
             $table->integer('category_id')->unsigned();
             $table->timestamps();
         });

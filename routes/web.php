@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+Route::resource('gun',\App\Http\Controllers\Admin\GunController::class);
+Route::resource('category',\App\Http\Controllers\Admin\CategoryController::class);
+
+Auth::routes();
+
+
+
+Route::get('/guns',[\App\Http\Controllers\GunController::class,'index'])->name('guns');

@@ -39,7 +39,11 @@ class GunController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->input();
+
+        $result = Gun::create($data);
+        if ($result)
+            return redirect()->route('gun.index');
     }
 
     /**
@@ -75,7 +79,10 @@ class GunController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = Gun::where('id',$id)->first();
+        $data = $request->all();
+        $item->update($data);
+        return redirect()->route('gun.index');
     }
 
     /**
@@ -86,6 +93,7 @@ class GunController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Gun::where('id',$id)->first()->destroy($id);
+        return redirect()->route('gun.index');
     }
 }
