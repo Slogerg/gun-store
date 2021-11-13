@@ -25,4 +25,10 @@ class Basket extends Model
         $this->belongsTo(User::class);
     }
 
+    public function haveGun($gun_id,$user_id)
+    {
+        $gun = Basket::query()->where('user_id',$user_id)->where('gun_id',$gun_id)->first();
+        dd($gun);
+    }
+
 }
