@@ -23,6 +23,7 @@ Auth::routes();
 
 
 Route::get('/guns',[\App\Http\Controllers\GunController::class,'index'])->name('guns');
+Route::get('/guns/{id}',[\App\Http\Controllers\GunController::class,'single'])->name('gun.single');
 Route::post('/addInBasket',[\App\Http\Controllers\GunController::class,'addInBasket'])->name('addInBasket');
 
 Route::get('/basket',[\App\Http\Controllers\BasketController::class,'index'])->name('basket');

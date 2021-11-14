@@ -23,4 +23,9 @@ class GunController extends Controller
         if ($result)
             return redirect()->route('guns');
     }
+    public function single($id)
+    {
+        $item = Gun::query()->where('id',$id)->first();
+        return view('gun-show',compact('item'));
+    }
 }

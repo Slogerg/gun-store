@@ -18,10 +18,11 @@
                 @foreach($items as $item)
 
                         <div class="card mb-4">
+{{--                            @dd($item->image)--}}
 {{--                            @if($item->img)--}}
 {{--                                <img class="img-fluid rounded" src="{{$item->img}}" alt="">--}}
 {{--                            @else--}}
-                                <img class="card-img-top" src="https://via.placeholder.com/750x300" alt="Card image cap" />
+                            <a href="{{route('gun.single',$item->id)}}"><img class="card-img-top" src="{{asset(str_replace('public/','storage',$item->image))}}" alt="Card image cap" /></a>
 {{--                            @endif--}}
                             <div class="card-body">
                                 <h6 style="color: gray;">[{{$item->category->name}}]</h6>
@@ -30,7 +31,7 @@
                                 <p>Кількість набоїв: {{$item->bullets}}</p>
 {{--                                //якщо BASKET user_id == user, gun_id == gun--}}
                                 @if($item->haveGun($item->id,Auth::user()->id))
-                                <button class="btn btn-secondary" disabled href="#">Додано</button>
+                                <button class="btn btn-secondary" disabled href="#">У кошику</button>
                                 @else
                                 <form action="{{route('addInBasket')}}" method="POST">
                                     @csrf

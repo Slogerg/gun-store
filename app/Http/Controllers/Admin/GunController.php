@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Basket;
 use App\Models\Category;
 use App\Models\Gun;
 use Illuminate\Http\Request;
@@ -39,8 +40,17 @@ class GunController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->input();
+        $data = $request->except('image');
+        if( $request->hasFile('image')){
 
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extention = $request->file('image')->getClientOriginalExtension();
+            $fileNameToStore = "image/".$filename."_".time().".".$extention;
+            $path = $request->file('image')->storeAs('public/', $fileNameToStore);
+
+        }
+        $data['image'] =$path;
         $result = Gun::create($data);
         if ($result)
             return redirect()->route('gun.index');
@@ -94,6 +104,7 @@ class GunController extends Controller
     public function destroy($id)
     {
         Gun::where('id',$id)->first()->destroy($id);
+        Basket::where('gun_id',$id)->delete();
         return redirect()->route('gun.index');
     }
 }

@@ -3,7 +3,7 @@
     <body>
     <main>
         <div class="container-xxl">
-            <form action="{{route('gun.store')}}" method = "POST">
+            <form action="{{route('gun.store')}}" method = "POST" enctype="multipart/form-data">
                 @method('POST')
                 @csrf
 {{--                <input type="text" hidden name="user_id" value="{{ Auth::user()->id }}">--}}
@@ -59,16 +59,16 @@
                     ></textarea>
                 </div>
 
-                {{--                    <div class="form-group">--}}
-                {{--                        <label for="exampleInputEmail1">Шлях до фото</label>--}}
-                {{--                        <input--}}
-                {{--                            type="text"--}}
-                {{--                            class="form-control"--}}
-                {{--                            id="exampleInputEmail1"--}}
-                {{--                            aria-describedby="emailHelp"--}}
-                {{--                            placeholder="Шлях до фото"--}}
-                {{--                        />--}}
-                {{--                    </div>--}}
+                <div class="form-group">
+                    <label for="image">Шлях до фото</label>
+                    <input
+                        type="file"
+                        class="form-control"
+                        id="image"
+                        name="image"
+                        placeholder="Шлях до фото"
+                    />
+                </div>
 
                 <div class="form-group">
                     <label for="category_id">Категорія</label>

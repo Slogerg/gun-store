@@ -64,16 +64,17 @@
                     >{{$item->description}}</textarea>
                 </div>
 
-                {{--                    <div class="form-group">--}}
-                {{--                        <label for="exampleInputEmail1">Шлях до фото</label>--}}
-                {{--                        <input--}}
-                {{--                            type="text"--}}
-                {{--                            class="form-control"--}}
-                {{--                            id="exampleInputEmail1"--}}
-                {{--                            aria-describedby="emailHelp"--}}
-                {{--                            placeholder="Шлях до фото"--}}
-                {{--                        />--}}
-                {{--                    </div>--}}
+                <div class="form-group">
+                    <label for="image">Шлях до фото</label>
+                    <input
+                        type="file"
+                        value="{{$item->image}}"
+                        class="form-control"
+                        id="image"
+                        name="image"
+                        placeholder="Шлях до фото"
+                    />
+                </div>
 
                 <div class="form-group">
                     <label for="category_id">Категорія</label>
