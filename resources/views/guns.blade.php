@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
+    <link rel="stylesheet" href="{{asset('css/rSlider.min.css')}}">
     <html lang="en">
     <body>
     <!-- Navigation-->
@@ -58,13 +58,37 @@
                 <!-- Side widget-->
                 <div class="card my-4">
                     <h5 class="card-header">Фільтр</h5>
-                    <div class="card-body">Тут ви можете отримати доступ до всіх статей блогу</div>
+                    <div class="card-body">
+                        <form action="{{route('sortByPrice')}}" method="GET">
+                            <select name ="select" class="form-select" aria-label="Default select example">
+                                <option selected>Ціна</option>
+                                <option value="cheaper">Від дешевших до дорожчих</option>
+                                <option value="expensive">Від дорожчих до дешевших</option>
+                            </select>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{route('sortByDate')}} " method="GET">
+                            <select name="select" class="form-select" aria-label="Default select example">
+                                <option selected>Дата</option>
+                                <option value="desc">Нові</option>
+                                <option value="sort">Старі</option>
+                            </select>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{route('searchByName')}}" method="GET">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Пошук по імені">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Footer-->
 
-
+    </body>
     </html>
 @endsection

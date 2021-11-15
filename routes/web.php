@@ -34,3 +34,7 @@ Route::delete('/commentRemove/{id}',[\App\Http\Controllers\CommentController::cl
 
 Route::post('/order',[\App\Http\Controllers\OrderController::class,'store'])->name('order.store');
 Route::post('/comment',[\App\Http\Controllers\CommentController::class,'store'])->name('comment.store');
+
+Route::get('/searchByName',[\App\Http\Controllers\GunController::class,'searchByName'])->name('searchByName');
+Route::get('/sortByPrice',[\App\Http\Controllers\GunController::class,'sortByPrice'])->name('sortByPrice');
+Route::get('/sortByDate',[\App\Http\Controllers\GunController::class,'sortByDate'])->name('sortByDate');
