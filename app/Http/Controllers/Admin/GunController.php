@@ -90,8 +90,16 @@ class GunController extends Controller
     public function update(Request $request, $id)
     {
         $item = Gun::where('id',$id)->first();
+
+        $filenameWithExt = $request->file('image')->getClientOriginalName();
+        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        $extention = $request->file('image')->getClientOriginalExtension();
+        $fileNameToStore = "image/".$filename."_".time().".".$extention;
+        $path = $request->file('image')->storeAs('public/', $fileNameToStore);
+
         $data = $request->all();
         $item->update($data);
+        $item->update(['image' => $path]);
         return redirect()->route('gun.index');
     }
 

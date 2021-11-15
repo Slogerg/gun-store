@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
-Route::resource('gun',\App\Http\Controllers\Admin\GunController::class);
-Route::resource('category',\App\Http\Controllers\Admin\CategoryController::class);
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::resource('gun',\App\Http\Controllers\Admin\GunController::class);
+    Route::resource('category',\App\Http\Controllers\Admin\CategoryController::class);
+});
 
 Auth::routes();
 
@@ -29,5 +30,7 @@ Route::post('/addInBasket',[\App\Http\Controllers\GunController::class,'addInBas
 Route::get('/basket',[\App\Http\Controllers\BasketController::class,'index'])->name('basket');
 Route::post('/reloadCount',[\App\Http\Controllers\BasketController::class,'reloadCount'])->name('reloadCount');
 Route::delete('/basketItemRemove/{basket}',[\App\Http\Controllers\BasketController::class,'destroy'])->name('basketItemRemove.destroy');
+Route::delete('/commentRemove/{id}',[\App\Http\Controllers\CommentController::class,'destroy'])->name('commentRemove.destroy');
 
 Route::post('/order',[\App\Http\Controllers\OrderController::class,'store'])->name('order.store');
+Route::post('/comment',[\App\Http\Controllers\CommentController::class,'store'])->name('comment.store');

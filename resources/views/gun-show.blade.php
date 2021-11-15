@@ -50,16 +50,6 @@
         </div>
         <div class="container-fluid">
             <div class="col-md-12 product-info">
-                <ul id="myTab" class="nav nav-tabs nav_tabs">
-
-                    <li class="active"><a href="#service-one" data-toggle="tab">Опис</a></li>
-                    <li><a href="#service-two" data-toggle="tab">Відгуки</a></li>
-{{--                    <li><a href="#service-three" data-toggle="tab">REVIEWS</a></li>--}}
-
-                </ul>
-                <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade in active" id="service-one">
-
                         <section class="container product-info">
                         {{$item->description}}
                             <h3>Параметри зброї {{$item->name}}:</h3>
@@ -67,22 +57,53 @@
                             <li>Калібр зброї: {{$item->caliber}}</li>
                             <li>Дата додавання у магазин: {{$item->created_at}}</li>
                         </section>
+{{--                comments--}}
+                    <div class="card my-4">
+                        <h5 class="card-header">Залиште коментар:</h5>
+                        <div class="card-body">
+                            <form method="POST" action="{{route('comment.store',$item->id)}}">
+                                @csrf
+                                <div class="form-group">
 
+                                    <input type="hidden" id="user_id" name="user_id" value="{{auth()->user()->id}}">
+                                    <input type="hidden" id="gun_id" name="gun_id" value="{{$item->id}}">
+                                    <textarea id="text" name="text" class="form-control" rows="3"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Підтвердити</button>
+                            </form>
+                        </div>
                     </div>
-                    <div class="tab-pane fade" id="service-two">
+                    <hr>
+                    <section class="container">
+                        @foreach($item->comments->reverse() as $comments)
 
-                        <section class="container">
+                            <div class="media mb-4">
+                                <hr>
 
-                        </section>
+                                <div class="media-body">
+                                    <h5 class="mt-0">
+                                        {{$comments->user->name}}
+                                    </h5>
+                                    {{$comments->text}}
+                                </div>
+                                @if(auth()->user()->hasRole('admin'))
+                                    <form action="{{route('commentRemove.destroy',$comments->id)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="text" name="gun_id" value="{{$item->id}}" hidden>
+                                        <button type="submit" class="btn btn-danger">delete</button>
+                                    </form>
+                                @endif
+                            </div>
+                            <hr>
+                        @endforeach
+                    </section>
 
-                    </div>
-                    <div class="tab-pane fade" id="service-three">
-
-                    </div>
                 </div>
 
                 <hr>
-            </div>
+
         </div>
     </div>
 </div>

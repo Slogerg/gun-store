@@ -3,7 +3,7 @@
     <body>
     <main>
         <div class="container-xxl">
-            <form action="{{route('gun.update',$item->id)}}" method = "POST">
+            <form action="{{route('gun.update',$item->id)}}" method = "POST" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 {{--                <input type="text" hidden name="user_id" value="{{ Auth::user()->id }}">--}}
@@ -65,10 +65,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="image">Шлях до фото</label>
+                    <label for="image">Фото</label>
                     <input
                         type="file"
-                        value="{{$item->image}}"
                         class="form-control"
                         id="image"
                         name="image"

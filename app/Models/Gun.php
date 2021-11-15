@@ -30,4 +30,9 @@ class Gun extends Model
             return false;
         else return true;
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

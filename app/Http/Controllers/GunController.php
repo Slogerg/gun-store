@@ -11,7 +11,7 @@ class GunController extends Controller
 {
     public function index()
     {
-        $items = Gun::all();
+        $items = Gun::paginate(1);
         $baskets = Basket::query()->where('user_id',Auth::user()->id)->get();
         return view('guns',compact('items'));
     }
