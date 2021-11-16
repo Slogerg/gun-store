@@ -24,10 +24,10 @@
                 <tr>
                     <td class="col-sm-8 col-md-6">
                         <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{{asset(str_replace('public/','storage',$item->gun->image))}}" style="width: 72px; height: 72px;"> </a>
+                            <a class="thumbnail pull-left" href="{{route('gun.single',$item->gun->id)}}"> <img class="media-object" src="{{asset(str_replace('public/','storage',$item->gun->image))}}" style="width: 72px; height: 72px;"> </a>
                             <div class="media-body">
-                                <h4 class="media-heading"><a href="#">{{$item->gun->name}}</a></h4>
-                                <h5 class="media-heading"><a href="#">{{$item->gun->category->name}}</a></h5>
+                                <h4 class="media-heading"><a href="{{route('gun.single',$item->gun->id)}}">{{$item->gun->name}}</a></h4>
+                                <h5 class="media-heading">{{$item->gun->category->name}}</h5>
                                 <span>Статус: </span><span class="text-success"><strong>Є на складі</strong></span>
                             </div>
                         </div></td>

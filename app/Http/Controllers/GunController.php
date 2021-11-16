@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Basket;
 use App\Models\Gun;
+use App\Models\Liked;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,6 +22,15 @@ class GunController extends Controller
         $data = $request->input();
 
         $result = Basket::create($data);
+        if ($result)
+            return redirect()->route('guns');
+    }
+
+    public function addInLiked(Request $request)
+    {
+        $data = $request->input();
+
+        $result = Liked::create($data);
         if ($result)
             return redirect()->route('guns');
     }

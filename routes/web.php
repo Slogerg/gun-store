@@ -26,10 +26,13 @@ Auth::routes();
 Route::get('/guns',[\App\Http\Controllers\GunController::class,'index'])->name('guns');
 Route::get('/guns/{id}',[\App\Http\Controllers\GunController::class,'single'])->name('gun.single');
 Route::post('/addInBasket',[\App\Http\Controllers\GunController::class,'addInBasket'])->name('addInBasket');
+Route::post('/addInLiked',[\App\Http\Controllers\GunController::class,'addInLiked'])->name('addInLiked');
 
 Route::get('/basket',[\App\Http\Controllers\BasketController::class,'index'])->name('basket');
+Route::get('/liked',[\App\Http\Controllers\LikedController::class,'index'])->name('liked');
 Route::post('/reloadCount',[\App\Http\Controllers\BasketController::class,'reloadCount'])->name('reloadCount');
 Route::delete('/basketItemRemove/{basket}',[\App\Http\Controllers\BasketController::class,'destroy'])->name('basketItemRemove.destroy');
+Route::delete('/likedItemRemove/{liked}',[\App\Http\Controllers\LikedController::class,'destroy'])->name('likedItemRemove.destroy');
 Route::delete('/commentRemove/{id}',[\App\Http\Controllers\CommentController::class,'destroy'])->name('commentRemove.destroy');
 
 Route::post('/order',[\App\Http\Controllers\OrderController::class,'store'])->name('order.store');

@@ -27,7 +27,7 @@
                     <div class="product-stock">На складі</div>
                     <hr>
                     <div class="btn-group cart">
-                        @if($item->haveGun($item->id,Auth::user()->id))
+                        @if($item->haveGun($item->id,Auth::user()->id,'Basket'))
                             <button class="btn btn-secondary" disabled href="#">У кошику</button>
                         @else
                             <form action="{{route('addInBasket')}}" method="POST">
@@ -39,11 +39,6 @@
                                 <button type="submit" class="btn btn-primary">Додати у кошик →</button>
                             </form>
                         @endif
-                    </div>
-                    <div class="btn-group wishlist">
-                        <button type="button" class="btn btn-danger">
-                            Додати у сподобані
-                        </button>
                     </div>
                 </div>
             </div>

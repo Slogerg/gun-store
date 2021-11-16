@@ -30,7 +30,7 @@
                                 <p>Калібр: {{$item->caliber}}</p>
                                 <p>Кількість набоїв: {{$item->bullets}}</p>
 {{--                                //якщо BASKET user_id == user, gun_id == gun--}}
-                                @if($item->haveGun($item->id,Auth::user()->id))
+                                @if($item->haveGun($item->id,Auth::user()->id,'Basket'))
                                 <button class="btn btn-secondary" disabled href="#">У кошику</button>
                                 @else
                                 <form action="{{route('addInBasket')}}" method="POST">
@@ -41,6 +41,17 @@
                                     <input type="text" name="price" hidden value="{{$item->price}}">
                                     <button type="submit" class="btn btn-primary">Додати у кошик →</button>
                                 </form>
+                                @endif
+                                <br>
+                                @if($item->haveGun($item->id,Auth::user()->id,'Like'))
+                                    <button class="btn btn-secondary" disabled href="#">Вибрано</button>
+                                @else
+                                    <form action="{{route('addInLiked')}}" method="POST">
+                                        @csrf
+                                        <input type="text"  name="user_id" hidden value="{{ Auth::user()->id }}">
+                                        <input type="text" name="gun_id" hidden value="{{$item->id}}">
+                                        <button type="submit" class="btn btn-danger">Додати у сподобані →</button>
+                                    </form>
                                 @endif
                             </div>
                             <div class="card-footer text-muted">

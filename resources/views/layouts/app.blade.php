@@ -33,6 +33,13 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 @endisset
+
+                @isset(Auth::user()->id)
+                    <a style="color: red; margin-left: 25px"  href="{{route('liked')}}">Сподобані({{\App\Models\Liked::query()->where('user_id',Auth::user()->id)->count()}})</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                @endisset
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">

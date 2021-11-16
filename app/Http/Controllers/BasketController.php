@@ -22,6 +22,7 @@ class BasketController extends Controller
 
     public function reloadCount(Request $request)
     {
+        dd($request->all());
         $item = Basket::where('id',$request->id)->first();
         $item->update(['count' => $request->count]);
         return redirect()->route('basket');
