@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+{{--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">--}}
+{{--<script  src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>--}}
+{{--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>--}}
 <!------ Include the above in your HEAD tag ---------->
 
 
@@ -31,7 +31,8 @@
                                 <span>Статус: </span><span class="text-success"><strong>Є на складі</strong></span>
                             </div>
                         </div></td>
-                    <form action="{{route('reloadCount')}}" method="POST">
+
+                    <form method="POST" action="{{route('reloadCount')}}" >
                         @csrf
                         <td class="col-sm-1 col-md-1" style="text-align: center">
                             <input type="text" name = "id" value="{{$item->id}}" hidden>

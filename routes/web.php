@@ -41,3 +41,7 @@ Route::post('/comment',[\App\Http\Controllers\CommentController::class,'store'])
 Route::get('/searchByName',[\App\Http\Controllers\GunController::class,'searchByName'])->name('searchByName');
 Route::get('/sortByPrice',[\App\Http\Controllers\GunController::class,'sortByPrice'])->name('sortByPrice');
 Route::get('/sortByDate',[\App\Http\Controllers\GunController::class,'sortByDate'])->name('sortByDate');
+
+Route::get('/', function () {
+    return redirect()->route('guns');
+});
